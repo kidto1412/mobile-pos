@@ -8,11 +8,11 @@ import { Icon } from "./icon";
 
 export default function FilterScroll() {
   const filters = [
-    { id: 1, label: "Short", icon: SlidersHorizontal },
-    { id: 2, label: "Price", icon: ChevronDown },
-    { id: 3, label: "Range area", icon: ChevronDown },
-    { id: 4, label: "Category", icon: ChevronDown },
-    { id: 5, label: "Rating", icon: ChevronDown },
+    { id: 1, label: "Pupuk a", icon: SlidersHorizontal },
+    { id: 2, label: "Pupuk B", icon: ChevronDown },
+    { id: 3, label: "Pupuk C", icon: ChevronDown },
+    { id: 4, label: "Pupuk D", icon: ChevronDown },
+    { id: 5, label: "Pupuk E", icon: ChevronDown },
   ];
 
   return (
@@ -36,7 +36,6 @@ export default function FilterScroll() {
             <Text className="text-gray-800 text-sm font-medium mr-1">
               {item.label}
             </Text>
-            {item.id !== 1 && <Icon as={ChevronDown} size="sm" color="gray" />}
           </Button>
         ))}
       </HStack>
