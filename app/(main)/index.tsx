@@ -1,36 +1,37 @@
-import { Button } from "@/components/ui/button";
-import { StyleSheet, Text, View } from "react-native";
-
+import { Box } from "@/components/ui/box";
+import { HStack } from "@/components/ui/hstack";
+import { BellIcon, Icon } from "@/components/ui/icon";
+import Menu from "@/components/ui/Menu";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function HomeScreen() {
+export default function HomePage() {
   return (
-    <SafeAreaView>
-      <View>
-        <Text> Hello world</Text>
-        <Button className="text-white">
-          <Text>Hello</Text>
-        </Button>
-      </View>
+    <SafeAreaView className="p-5">
+      <HStack className="items-center justify-between">
+        {/* Left Section */}
+        <HStack className="items-center">
+          <VStack className="ml-3">
+            <Text className="text-base font-semibold text-gray-900">
+              Stephanie Sharkey
+            </Text>
+            <HStack className="items-center mt-0.5">
+              <Text className="text-sm text-gray-500">Cashier</Text>
+            </HStack>
+          </VStack>
+        </HStack>
+
+        {/* Notification Icon */}
+
+        <Box className="relative">
+          <Icon as={BellIcon} size="xl" color="black" />
+        </Box>
+      </HStack>
+      <Box className="mt-5">
+        <Menu></Menu>
+      </Box>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
-  },
-});

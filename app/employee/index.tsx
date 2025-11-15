@@ -1,12 +1,11 @@
 import { Button, ButtonText } from "@/components/ui/button";
-import FilterScroll from "@/components/ui/FilterScroll";
 import { Input, InputField } from "@/components/ui/input";
-import VerticalProduct from "@/components/ui/VerticalProduct";
+import ListUserCard from "@/components/ui/ListUser";
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function ProductPage() {
+export default function EmployeePage() {
   const router = useRouter();
   return (
     <SafeAreaView>
@@ -16,9 +15,9 @@ export default function ProductPage() {
           size="md"
           action="primary"
           className="bg-blue-700"
-          onPress={() => router.push("/product/form")}
+          onPress={() => router.push("/employee/form")}
         >
-          <ButtonText>Tambah Produk</ButtonText>
+          <ButtonText>Tambah Employee</ButtonText>
         </Button>
       </View>
       <View>
@@ -26,9 +25,7 @@ export default function ProductPage() {
           <InputField placeholder="Search..." />
         </Input>
 
-        <FilterScroll />
-
-        <VerticalProduct />
+        <ListUserCard />
       </View>
     </SafeAreaView>
   );

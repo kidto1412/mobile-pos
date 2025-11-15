@@ -8,12 +8,12 @@ import { Text } from "@/components/ui/text";
 import { ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function ProductFormPage() {
+export default function EmployeeFormPage() {
   return (
     <SafeAreaView>
       <ScrollView>
         <Box className="bg-white">
-          <Text className="font-bold ml-1 p-5">Form Produk</Text>
+          <Text className="font-bold ml-1 p-5">Form Karyawan</Text>
           <View>
             <ImagePicker />
           </View>

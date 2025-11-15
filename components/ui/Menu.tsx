@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { Pressable } from "react-native";
 import { Box } from "./box";
 import { Text } from "./text";
@@ -21,6 +21,7 @@ const MenuItem = ({ label, icon, onPress }: ItemProps) => (
 );
 
 export default function CategoryMenu() {
+  const router = useRouter();
   const menu = [
     { label: "Penjualan", icon: "cart-outline", path: "/sales" },
     { label: "Penyimpanan", icon: "cube-outline", path: "/storage" },
@@ -38,7 +39,7 @@ export default function CategoryMenu() {
             key={index}
             label={item.label}
             icon={item.icon}
-            onPress={() => router.navigate(item.path as any)}
+            onPress={() => router.push(item.path as any)}
           />
         ))}
       </Box>
