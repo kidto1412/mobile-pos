@@ -29,6 +29,8 @@ export default function CategoryMenu() {
     { label: "Pegawai", icon: "person-outline", path: "/employee" },
     { label: "Produk", icon: "albums-outline", path: "/product" },
     { label: "Laporan", icon: "bar-chart-outline", path: "/report" },
+    { label: "Category", icon: "bar-chart-outline", path: "/category" },
+    { label: "Store", icon: "bar-chart-outline", path: "/store" },
   ];
 
   return (

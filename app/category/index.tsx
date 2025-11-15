@@ -1,0 +1,32 @@
+import { Button, ButtonText } from "@/components/ui/button";
+import { Input, InputField } from "@/components/ui/input";
+import ListCategoryCard from "@/components/ui/ListCategoryCard";
+import { useRouter } from "expo-router";
+import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+export default function CategoryPage() {
+  const router = useRouter();
+  return (
+    <SafeAreaView>
+      <View className="items-start px-5 mb-5">
+        <Button
+          variant="solid"
+          size="md"
+          action="primary"
+          className="bg-blue-700"
+          onPress={() => router.push("/product/form")}
+        >
+          <ButtonText>Tambah Kategori</ButtonText>
+        </Button>
+      </View>
+      <View>
+        <Input className="mx-5 bg-white rounded-lg" size="lg">
+          <InputField placeholder="Search..." />
+        </Input>
+
+        <ListCategoryCard />
+      </View>
+    </SafeAreaView>
+  );
+}

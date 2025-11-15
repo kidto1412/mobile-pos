@@ -1,7 +1,7 @@
 import { Box } from "@/components/ui/box";
 import { Button, ButtonText } from "@/components/ui/button";
 import { HStack } from "@/components/ui/hstack";
-import ImagePicker from "@/components/ui/ImagePicker";
+import ImageUploadCard from "@/components/ui/ImagePicker";
 
 import { Input, InputField } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
@@ -15,7 +15,7 @@ export default function ProductFormPage() {
         <Box className="bg-white">
           <Text className="font-bold ml-1 p-5">Form Produk</Text>
           <View>
-            <ImagePicker />
+            <ImageUploadCard />
           </View>
           <View className="items-start p-5 mb-5">
             <Input className="bg-white rounded-lg mb-5" size="lg">
@@ -41,11 +41,6 @@ export default function ProductFormPage() {
             </Input>
           </View>
           <HStack className="items-center ">
-            <View className="items-start ml-5 mb-5">
-              <Button className="bg-gray-500">
-                <ButtonText className="text-white">Kembali</ButtonText>
-              </Button>
-            </View>
             <View className="items-start ml-5 mb-5">
               <Button className="bg-blue-700">
                 <ButtonText>Simpan</ButtonText>
