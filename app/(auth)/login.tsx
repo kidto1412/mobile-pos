@@ -2,23 +2,46 @@ import { Box } from "@/components/ui/box";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Input, InputField } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { router } from "expo-router";
+import { useState } from "react";
 import { View } from "react-native";
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { login, loading } = useAuth();
+  const onSubmit = async () => {
+    try {
+      await login(username, password);
+    } catch (error) {
+      alert("gagal");
+    }
+  };
   return (
     <View className="flex-1 justify-center px-6 bg-white">
       <Text className="text-2xl font-bold mb-6">Login</Text>
 
       <Box className="mb-4">
         <Input>
-          <InputField placeholder="Email" keyboardType="email-address" />
+          <InputField
+            placeholder="Email"
+            keyboardType="email-address"
+            value={username}
+            onChangeText={setUsername}
+          />
         </Input>
       </Box>
 
       <Box className="mb-4">
         <Input>
-          <InputField placeholder="Password" secureTextEntry />
+          <InputField
+            placeholder="Password"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+          />
         </Input>
       </Box>
 
@@ -33,10 +56,7 @@ export default function Login() {
         <Text className="text-center font-bold">Atau</Text>
       </View>
 
-      <Button
-        className="mt-2 bg-gray-400"
-        onPress={() => router.replace("/(main)")}
-      >
+      <Button className="mt-2 bg-gray-400" onPress={() => onSubmit()}>
         <ButtonText>Lanjutkan dengan Google</ButtonText>
       </Button>
 
