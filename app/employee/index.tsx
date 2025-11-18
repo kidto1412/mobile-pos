@@ -17,7 +17,7 @@ export default function EmployeePage() {
           className="bg-blue-700"
           onPress={() => router.push("/employee/form")}
         >
-          <ButtonText>Tambah Employee</ButtonText>
+          <ButtonText>Tambah Karyawan</ButtonText>
         </Button>
       </View>
       <View>

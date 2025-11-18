@@ -10,13 +10,13 @@ export default function EmployeeLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Produk",
+          title: "Karyawan",
         }}
       />
       <Stack.Screen
         name="form"
         options={{
-          title: "Form Produk",
+          title: "Form Karyawan",
         }}
       />
     </Stack>

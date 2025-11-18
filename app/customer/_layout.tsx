@@ -10,13 +10,13 @@ export default function CustomerLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Produk",
+          title: "Pelanggan",
         }}
       />
       <Stack.Screen
         name="form"
         options={{
-          title: "Form Produk",
+          title: "Form Panggan",
         }}
       />
     </Stack>

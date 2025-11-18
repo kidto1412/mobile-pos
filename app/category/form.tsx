@@ -13,7 +13,7 @@ export default function ProductFormPage() {
     <SafeAreaView>
       <ScrollView>
         <Box className="bg-white">
-          <Text className="font-bold ml-1 p-5">Form Kategory</Text>
+          <Text className="font-bold ml-1 p-5">Form Kategori</Text>
           <View>
             <ImageUploadCard />
           </View>

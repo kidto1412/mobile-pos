@@ -1,9 +1,11 @@
+import { Badge, BadgeText } from "@/components/ui/badge";
 import { Box } from "@/components/ui/box";
 import { HStack } from "@/components/ui/hstack";
-import { BellIcon, Icon } from "@/components/ui/icon";
+import { Icon } from "@/components/ui/icon";
 import Menu from "@/components/ui/Menu";
 import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
+import { ShoppingCart } from "lucide-react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -26,7 +28,15 @@ export default function HomePage() {
         {/* Notification Icon */}
 
         <Box className="relative">
-          <Icon as={BellIcon} size="xl" color="black" />
+          <VStack>
+            <Badge
+              className="z-10 self-end h-[22px] w-[22px] bg-red-600 rounded-full -mb-3.5 -mr-3.5"
+              variant="solid"
+            >
+              <BadgeText className="text-white">2</BadgeText>
+            </Badge>
+            <Icon as={ShoppingCart} size="xl" color="black" />
+          </VStack>
         </Box>
       </HStack>
       <Box className="mt-5">

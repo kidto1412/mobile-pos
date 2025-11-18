@@ -21,12 +21,14 @@ export default function RootLayout() {
   return (
     <GluestackUIProvider>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(main)" options={{ headerShown: false }} />
-          <Stack.Screen name="product" options={{ headerShown: false }} />
-          <Stack.Screen name="employee" options={{ headerShown: false }} />
-          <Stack.Screen name="customer" options={{ headerShown: false }} />
-          <Stack.Screen name="category" options={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="splash" />
+          <Stack.Screen name="(main)" />
+          <Stack.Screen name="product" />
+          <Stack.Screen name="sales" />
+          <Stack.Screen name="employee" />
+          <Stack.Screen name="customer" />
+          <Stack.Screen name="category" />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
