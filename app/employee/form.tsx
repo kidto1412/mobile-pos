@@ -21,6 +21,7 @@ import { useUser } from "@/hooks/user/useUser";
 import { UserRequest } from "@/interfaces/user.interface";
 import { useToastMessage } from "@/providers/toast.provider";
 import { useUserState } from "@/stores/user.store";
+import { getErrorMessage } from "@/utils/global-message.util";
 import { ChevronDownIcon } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
@@ -53,32 +54,36 @@ export default function EmployeeFormPage() {
   const { showToast } = useToastMessage();
 
   const onSubmit = async () => {
-    if (!user) {
-      // CREATE → semua field wajib termasuk password
-      if (
-        !form.fullName ||
-        !form.username ||
-        !form.password ||
-        !form.email ||
-        !form.role
-      ) {
-        return showToast("Isi semua inputan!", "error");
+    try {
+      if (!user) {
+        // CREATE → semua field wajib termasuk password
+        if (
+          !form.fullName ||
+          !form.username ||
+          !form.password ||
+          !form.email ||
+          !form.role
+        ) {
+          return showToast("Isi semua inputan!", "error");
+        }
+
+        await create(form);
+      } else {
+        // EDIT → password boleh kosong
+        if (!form.fullName || !form.username || !form.email || !form.role) {
+          return showToast("Isi semua inputan kecuali password!", "error");
+        }
+
+        // Jika password kosong, jangan kirim password
+        const { password, ...updatePayload } = form;
+
+        await update(user.id, updatePayload);
       }
-
-      await create(form);
-    } else {
-      // EDIT → password boleh kosong
-      if (!form.fullName || !form.username || !form.email || !form.role) {
-        return showToast("Isi semua inputan kecuali password!", "error");
-      }
-
-      // Jika password kosong, jangan kirim password
-      const { password, ...updatePayload } = form;
-
-      await update(user.id, updatePayload);
+      reset();
+    } catch (error) {
+      const message = getErrorMessage(error);
+      showToast(message, "error");
     }
-
-    reset();
   };
 
   return (
