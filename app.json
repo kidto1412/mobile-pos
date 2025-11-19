@@ -1,7 +1,8 @@
 {
   "expo": {
     "updates": {
-      "enabled": false
+      "enabled": false,
+      "checkAutomatically": "ON_ERROR_RECOVERY"
     },
     "name": "booking_apps",
     "slug": "booking_apps",

@@ -11,13 +11,9 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, loading } = useAuth();
+  const { login } = useAuth();
   const onSubmit = async () => {
-    try {
-      await login(username, password);
-    } catch (error) {
-      alert("gagal");
-    }
+    await login(username, password);
   };
   return (
     <View className="flex-1 justify-center px-6 bg-white">
@@ -45,10 +41,7 @@ export default function Login() {
         </Input>
       </Box>
 
-      <Button
-        className="mt-2 bg-blue-400"
-        onPress={() => router.replace("/(main)")}
-      >
+      <Button className="mt-2 bg-blue-400" onPress={() => onSubmit()}>
         <ButtonText>Login</ButtonText>
       </Button>
 
