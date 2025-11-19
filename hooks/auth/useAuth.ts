@@ -5,12 +5,16 @@ import { AuthEndpoint } from "@/services/endpoints/auth.endpoint";
 import { useAuthStore } from "@/stores/auth.store";
 import { getErrorMessage } from "@/utils/global-message.util";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 
 export function useAuth() {
   const router = useRouter();
   const setAuth = useAuthStore((s) => s.setAuth);
   const { showLoading, hideLoading } = useLoading();
   const { showToast } = useToastMessage();
+
+  const [data, setData] = useState(null);
+
   const login = async (username: string, password: string) => {
     try {
       showLoading();

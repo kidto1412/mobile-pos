@@ -22,8 +22,7 @@ export default function Login() {
       <Box className="mb-4">
         <Input>
           <InputField
-            placeholder="Email"
-            keyboardType="email-address"
+            placeholder="Username"
             value={username}
             onChangeText={setUsername}
           />

@@ -9,6 +9,8 @@ export interface PaginationResponse<T> {
   size: number;
   total: number;
   totalPages: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
 }
 
 export interface BasePaginationResponse<T> {

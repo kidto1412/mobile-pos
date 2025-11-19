@@ -1,0 +1,50 @@
+// hooks/useAuth.ts
+import { PaginationRequest } from "@/interfaces/pagination.interface";
+import { UserRequest } from "@/interfaces/user.interface";
+import { useLoading } from "@/providers/loading.provider";
+import { useToastMessage } from "@/providers/toast.provider";
+
+import { UserEndpoint } from "@/services/endpoints/user.endpoint";
+
+import { getErrorMessage } from "@/utils/global-message.util";
+import { useRouter } from "expo-router";
+
+export function useUser() {
+  const router = useRouter();
+
+  const { showLoading, hideLoading } = useLoading();
+  const { showToast } = useToastMessage();
+
+  const create = async (data: UserRequest) => {
+    try {
+      showLoading();
+
+      const res = await UserEndpoint.create(data);
+      console.log(res);
+
+      router.replace("/employee");
+      showToast("Berhasil 🎉", "success");
+    } catch (err) {
+      const message = getErrorMessage(err);
+      showToast(message, "error");
+    } finally {
+      hideLoading();
+    }
+  };
+
+  const getUserPagination = async (params: PaginationRequest) => {
+    try {
+      showLoading();
+
+      const res = await UserEndpoint.getPagination(params);
+      return res.data;
+    } catch (err) {
+      const message = getErrorMessage(err);
+      showToast(message, "error");
+    } finally {
+      hideLoading();
+    }
+  };
+
+  return { create, getUserPagination };
+}
