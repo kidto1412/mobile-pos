@@ -5,8 +5,8 @@ import ListUserCard from "@/components/ui/ListUser";
 import { useUser } from "@/hooks/user/useUser";
 import { UserResponse } from "@/interfaces/user.interface";
 import { useUserState } from "@/stores/user.store";
-import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -18,9 +18,11 @@ export default function EmployeePage() {
 
   const userStore = useUserState();
 
-  useEffect(() => {
-    fetchUsers(1);
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchUsers(1);
+    }, [])
+  );
 
   const fetchUsers = async (pageNumber: number) => {
     const data = await getUserPagination({

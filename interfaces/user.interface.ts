@@ -1,7 +1,7 @@
 export interface UserRequest {
   fullName: string;
   username: string;
-  password: string;
+  password?: string;
   email: string;
   phone: string;
   role: string;
@@ -11,7 +11,7 @@ export interface UserResponse {
   id: string;
   fullName: string;
   username: string;
-  password: string;
+  password: string | null;
   email: string;
   phone: string;
   role: "ADMIN" | "CASHIER" | "OTHER"; // bisa disesuaikan

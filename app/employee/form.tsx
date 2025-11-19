@@ -20,8 +20,9 @@ import { roles } from "@/constants/role.constant";
 import { useUser } from "@/hooks/user/useUser";
 import { UserRequest } from "@/interfaces/user.interface";
 import { useToastMessage } from "@/providers/toast.provider";
+import { useUserState } from "@/stores/user.store";
 import { ChevronDownIcon } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -34,22 +35,52 @@ export default function EmployeeFormPage() {
     role: "",
     email: "",
   });
-  const { create } = useUser();
+  const { user, reset } = useUserState();
+  useEffect(() => {
+    if (user) {
+      setForm({
+        fullName: user.fullName,
+        email: user.email,
+        username: user.username,
+        password: "", // kosongkan agar user bisa isi baru
+        phone: user.phone,
+        role: user.role,
+      });
+    }
+  }, [user]);
+
+  const { create, update } = useUser();
   const { showToast } = useToastMessage();
 
   const onSubmit = async () => {
-    if (
-      !form.fullName ||
-      !form.username ||
-      !form.password ||
-      !form.email ||
-      !form.role
-    ) {
-      return showToast("Isi semua inputan!", "error");
+    if (!user) {
+      // CREATE → semua field wajib termasuk password
+      if (
+        !form.fullName ||
+        !form.username ||
+        !form.password ||
+        !form.email ||
+        !form.role
+      ) {
+        return showToast("Isi semua inputan!", "error");
+      }
+
+      await create(form);
+    } else {
+      // EDIT → password boleh kosong
+      if (!form.fullName || !form.username || !form.email || !form.role) {
+        return showToast("Isi semua inputan kecuali password!", "error");
+      }
+
+      // Jika password kosong, jangan kirim password
+      const { password, ...updatePayload } = form;
+
+      await update(user.id, updatePayload);
     }
 
-    await create(form);
+    reset();
   };
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -77,13 +108,15 @@ export default function EmployeeFormPage() {
                 onChangeText={(text) => setForm({ ...form, username: text })}
               />
             </Input>
-            <Input className="bg-white rounded-lg mb-5" size="lg">
-              <InputField
-                placeholder="Password"
-                value={form.password}
-                onChangeText={(text) => setForm({ ...form, password: text })}
-              />
-            </Input>
+            {!user && (
+              <Input className="bg-white rounded-lg mb-5" size="lg">
+                <InputField
+                  placeholder="Password"
+                  value={form.password}
+                  onChangeText={(text) => setForm({ ...form, password: text })}
+                />
+              </Input>
+            )}
             <Input className="bg-white rounded-lg mb-5" size="lg">
               <InputField
                 placeholder="Phone"

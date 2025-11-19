@@ -19,10 +19,24 @@ export function useUser() {
     try {
       showLoading();
 
-      const res = await UserEndpoint.create(data);
-      console.log(res);
+      await UserEndpoint.create(data);
 
-      router.replace("/employee");
+      showToast("Berhasil 🎉", "success");
+      router.back();
+    } catch (err) {
+      const message = getErrorMessage(err);
+      showToast(message, "error");
+    } finally {
+      hideLoading();
+    }
+  };
+  const update = async (id: string, data: UserRequest) => {
+    try {
+      showLoading();
+
+      await UserEndpoint.update(id, data);
+
+      router.back();
       showToast("Berhasil 🎉", "success");
     } catch (err) {
       const message = getErrorMessage(err);
@@ -59,5 +73,5 @@ export function useUser() {
     }
   };
 
-  return { create, getUserPagination, deleteUser };
+  return { create, getUserPagination, deleteUser, update };
 }
