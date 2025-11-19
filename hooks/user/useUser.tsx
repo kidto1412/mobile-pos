@@ -46,5 +46,18 @@ export function useUser() {
     }
   };
 
-  return { create, getUserPagination };
+  const deleteUser = async (id: string) => {
+    try {
+      showLoading();
+
+      await UserEndpoint.delete(id);
+    } catch (err) {
+      const message = getErrorMessage(err);
+      showToast(message, "error");
+    } finally {
+      hideLoading();
+    }
+  };
+
+  return { create, getUserPagination, deleteUser };
 }

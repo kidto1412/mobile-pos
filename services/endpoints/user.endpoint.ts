@@ -1,6 +1,6 @@
 import { PaginationRequest } from "@/interfaces/pagination.interface";
 import { UserRequest, UserResponse } from "@/interfaces/user.interface";
-import { GET_PAGINATED, POST } from "@/utils/api.util";
+import { DELETE, GET_PAGINATED, POST } from "@/utils/api.util";
 
 export const UserEndpoint = {
   create(payload: UserRequest) {
@@ -12,7 +12,7 @@ export const UserEndpoint = {
   //   update(payload: LoginRequest) {
   //     return POST<LoginResponse>("/users", payload);
   //   },
-  //   delete(payload: LoginRequest) {
-  //     return POST<LoginResponse>("/users", payload);
-  //   },
+  delete(id: string) {
+    return DELETE(`/users/${id}`);
+  },
 };

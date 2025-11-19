@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 import { UserResponse } from "@/interfaces/user.interface";
 import { Box } from "./box";
@@ -7,8 +7,14 @@ import { HStack } from "./hstack";
 
 interface ListUserCardProps {
   users: UserResponse[];
+  onEdit: (user: UserResponse) => void;
+  onDelete: (user: UserResponse) => void;
 }
-export default function ListUserCard({ users }: ListUserCardProps) {
+export default function ListUserCard({
+  users,
+  onEdit,
+  onDelete,
+}: ListUserCardProps) {
   return (
     <View style={{ paddingHorizontal: 16, paddingBottom: 200 }}>
       {users.map((user) => (
@@ -27,6 +33,15 @@ export default function ListUserCard({ users }: ListUserCardProps) {
             <Text className="text-gray-600 text-xs mt-1">
               Role: {user.role}
             </Text>
+            <HStack space="lg" className="mt-3">
+              <TouchableOpacity onPress={() => onEdit(user)}>
+                <Text className="text-blue-600 font-semibold">Edit</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => onDelete(user)}>
+                <Text className="text-red-600 font-semibold">Delete</Text>
+              </TouchableOpacity>
+            </HStack>
           </Box>
         </HStack>
       ))}
